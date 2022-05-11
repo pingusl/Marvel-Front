@@ -5,30 +5,37 @@ import logo from "./img/logo.png";
 
 //----Load Pages----//
 import Characters from "./pages/characters";
+import Character from "./pages/character";
 import Comics from "./pages/comics";
+import Comic from "./pages/comic";
 import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header className="header">
-        <h1 className="header-characters">Characters</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="header-comics">Comics</h1>
-      </header>
-      <div className="main-container">
-        <div className="main">
-          <Router>
+    <Router>
+      <div className="App">
+        <header className="header">
+          <Link className="header-characters" to="/characters">
+            <h1 className="header-characters">Characters</h1>
+          </Link>
+          <img src={logo} className="App-logo" alt="logo" />
+          <Link className="header-comics" to="/comics">
+            <h1 className="header-comics">Comics</h1>
+          </Link>
+        </header>
+        <div className="main-container">
+          <div className="main">
             <Routes>
+              <Route path="/" element={<Characters />} />
               <Route path="/characters" element={<Characters />} />
+              <Route path="/character/:id" element={<Character />} />
               <Route path="/comics" element={<Comics />} />
+              <Route path="/comic/:id" element={<Comic />} />
             </Routes>
-          </Router>
-          <Characters />
-          <Comics />
+          </div>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

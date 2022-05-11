@@ -1,20 +1,29 @@
 .App {
   text-align: center;
-  .App-logo {
-    height: 20vmin;
-    pointer-events: none;
-  }
-
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
   .header {
+    .App-logo {
+      height: 30vmin;
+
+      pointer-events: none;
+    }
     padding-top: 2rem;
     background-color: #282c34;
-    min-height: 100vh;
+    min-height: 30vh;
+
     display: flex;
     //flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-around;
-    font-size: calc(10px + 2vmin);
+    font-size: calc(20px + 2vmin);
     color: white;
+  }
+  .header-characters,
+  .header-comics {
+    color: white;
+    text-decoration: none !important;
   }
 }
 
