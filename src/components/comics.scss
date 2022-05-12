@@ -1,0 +1,13 @@
+.comics-container {
+  .comics-cards {
+    .card-title {
+      color: white;
+      text-decoration: none !important;
+    }
+  }
+}
+.card-picture {
+  width: 10rem;
+  height: 20rem;
+  object-fit: cover;
+}

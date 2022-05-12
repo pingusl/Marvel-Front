@@ -6,6 +6,7 @@
 
   .header {
     .App-logo {
+      flex: 1;
       height: 30vmin;
 
       pointer-events: none;
@@ -23,30 +24,9 @@
   }
   .header-characters,
   .header-comics {
+    flex: 1;
     color: white;
     text-decoration: none !important;
-  }
-  .character-container {
-    .character-filmography {
-      display: flex;
-    }
-    .col-1 {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      .img-character {
-        padding-left: 2rem;
-        width: 20rem;
-      }
-    }
-    .col-2 {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-    }
-    .col-3 {
-      flex: 1;
-    }
   }
 }
 

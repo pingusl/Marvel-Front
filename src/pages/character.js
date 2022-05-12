@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+//----Loading CSS----//
+import "../components/character.scss";
+
 const Character = () => {
   const [data, setData] = useState();
   const [dataComics, setDataComics] = useState();

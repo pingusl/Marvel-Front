@@ -1,0 +1,22 @@
+.characters-container {
+  .carrousel {
+    display: flex;
+    overflow-x: hidden;
+    overflow-x: scroll;
+    .card-container {
+      width: 10rem;
+      color: white;
+      text-decoration: none;
+
+      .img-character {
+        // padding-left: 2rem;
+        width: 10rem;
+        height: 10rem;
+        object-fit: cover;
+      }
+    }
+    .card-container:hover {
+      background-color: #ed171e;
+    }
+  }
+}
