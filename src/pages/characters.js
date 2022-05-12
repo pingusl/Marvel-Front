@@ -21,7 +21,6 @@ const Characters = () => {
           `http://localhost:3000/characters?name=${searchInput}`
         );
         setData(response.data);
-        console.log(response.data.results);
 
         setIsLoading(false);
       } catch (error) {

@@ -5,22 +5,21 @@
   font-display: swap;
 
   .header {
-    .App-logo {
-      flex: 1;
-      height: 30vmin;
-
-      pointer-events: none;
-    }
-    padding-top: 2rem;
-    background-color: #282c34;
-    min-height: 30vh;
-
     display: flex;
     //flex-direction: column;
     align-items: center;
     justify-content: space-around;
     font-size: calc(20px + 2vmin);
     color: white;
+    padding-top: 2rem;
+    background-color: #282c34;
+    // min-height: 20vh;
+    .App-logo {
+      flex: 1;
+      height: 20vmin;
+      pointer-events: none;
+      padding: 2rem;
+    }
   }
   .header-characters,
   .header-comics {
