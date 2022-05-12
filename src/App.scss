@@ -30,10 +30,22 @@
     .character-filmography {
       display: flex;
     }
-
-    .img-character {
-      padding-left: 2rem;
-      width: 20rem;
+    .col-1 {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      .img-character {
+        padding-left: 2rem;
+        width: 20rem;
+      }
+    }
+    .col-2 {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+    .col-3 {
+      flex: 1;
     }
   }
 }

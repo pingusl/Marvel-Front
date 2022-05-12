@@ -54,10 +54,10 @@ const Character = () => {
     <div className="character-container">
       <h1>{data.name}</h1>
       <div className="character-filmography">
-        <div className="col-left-character">
+        <div className="col-1">
           <img className="img-character" src={imgUrl} alt={data.name} />
         </div>
-        <div className="col-rigth-character">
+        <div className="col-2">
           {dataComics.map((comics, key) => {
             return (
               <button className="card" key={key}>
@@ -66,6 +66,7 @@ const Character = () => {
             );
           })}
         </div>
+        <div className="col-3"></div>
       </div>
     </div>
   );
