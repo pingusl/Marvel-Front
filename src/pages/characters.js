@@ -6,8 +6,12 @@ import axios from "axios";
 //----Loading CSS----//
 import "../components/characters.scss";
 
+//----Loading searchImg----//
+import searchImage from "../img/loupe.svg";
+
 const Characters = () => {
   const [data, setData] = useState();
+  const [searchInput, setSearchInput] = useState("");
   //const [imgUrl, setImgUrl] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -29,7 +33,29 @@ const Characters = () => {
     <p>En cours de chargement</p>
   ) : (
     <div className="characters-container">
-      <h1>Characters</h1>
+      <div className="search-bar-container">
+        <div className="search-bar">
+          <div className="search-img">
+            <img className="search-img" src={searchImage} alt="search" />
+          </div>
+          <div className="search-characters">
+            <input
+              className="search-characters"
+              placeholder="Find your Favorite character"
+              type="text"
+              onClick={(event) => {
+                setSearchInput("");
+              }}
+              onChange={(event) => {
+                setSearchInput(event.target.value);
+                // handleSearch();
+              }}
+              value={searchInput}
+            />
+          </div>
+        </div>
+      </div>
+
       <div className="carrousel">
         {data.results.map((character, key) => {
           const imgUrl =

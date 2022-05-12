@@ -1,4 +1,29 @@
 .characters-container {
+  //justify-content: center;
+  .search-bar-container {
+    display: flex;
+    justify-content: center;
+    .search-bar {
+      display: flex;
+      .search-img {
+        display: flex;
+        align-items: center;
+        width: 15px;
+        color: #999999;
+        padding-right: 3px;
+      }
+      .search-characters {
+        width: 15rem;
+        line-height: 2rem;
+        font-size: medium;
+        color: #535353;
+        border: none;
+        outline: none;
+        background-color: transparent;
+      }
+    }
+  }
+
   .carrousel {
     display: flex;
     overflow-x: hidden;

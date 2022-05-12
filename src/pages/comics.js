@@ -49,8 +49,8 @@ const Comics = () => {
                 <img className="card-picture" src={imgUrl} alt={comic.title} />
               </div>
               <div classname="comic-informations">
-                <div className="comic-description">{comic.description}</div>
                 <div className="card-title">{comic.title}</div>
+                <div className="comic-description">{comic.description}</div>
               </div>
             </div>
           );
