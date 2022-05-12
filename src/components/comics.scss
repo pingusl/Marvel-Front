@@ -11,6 +11,12 @@
       box-shadow: 0 4px 2px -2px gray;
       .previous-nav {
         flex: 1;
+        .img-previous-cards-hide {
+          visibility: hide;
+        }
+        .img-previous-cards-show {
+          visibility: show;
+        }
       }
 
       .search-bar {
@@ -38,6 +44,12 @@
       }
       .next-nav {
         flex: 1;
+        .img-next-cards-hide {
+          visibility: hide;
+        }
+        .img-next-cards-show {
+          visibility: show;
+        }
       }
     }
   }

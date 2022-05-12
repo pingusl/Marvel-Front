@@ -57,15 +57,16 @@ const Comics = () => {
         <nav className="navigate">
           <div className="previous-nav">
             <img
-              className="img-Previous-cards"
+              className={
+                skip < 2 * limit
+                  ? "img-previous-cards-hide"
+                  : "img-previous-cards-show"
+              }
               src={previousArrow}
               alt="previous"
               onClick={() => {
                 setSkip(skip - limit);
               }}
-              style={
-                skip < 150 ? { display: "hidden" } : { display: "visible" }
-              }
               key="previous"
             />
           </div>
@@ -91,17 +92,16 @@ const Comics = () => {
           </div>
           <div className="next-nav">
             <img
-              className="img-next-cards"
+              className={
+                skip > totalComics
+                  ? "img-next-cards-hide"
+                  : "img-next-cards-show"
+              }
               src={nextArrow}
               alt="next"
               onClick={() => {
                 setSkip(skip + limit);
               }}
-              style={
-                skip > totalComics
-                  ? { visibility: "hidden" }
-                  : { visibility: "visible" }
-              }
             />
           </div>
         </nav>
