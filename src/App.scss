@@ -3,6 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
+
   .header {
     .App-logo {
       height: 30vmin;
@@ -24,6 +25,16 @@
   .header-comics {
     color: white;
     text-decoration: none !important;
+  }
+  .character-container {
+    .character-filmography {
+      display: flex;
+    }
+
+    .img-character {
+      padding-left: 2rem;
+      width: 20rem;
+    }
   }
 }
 

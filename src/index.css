@@ -3,9 +3,6 @@
 body {
   margin: 0;
   font-family: "Marvel";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
