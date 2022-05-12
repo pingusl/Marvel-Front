@@ -13,7 +13,7 @@ const Comics = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3000/comics");
-        console.log(response.data);
+        //console.log(response.data);
 
         //----Testing Sort Methode----//
         // const tab = [];
