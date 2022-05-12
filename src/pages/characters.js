@@ -12,14 +12,16 @@ import searchImage from "../img/loupe.svg";
 const Characters = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
-  //const [imgUrl, setImgUrl] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/characters");
+        const response = await axios.get(
+          `http://localhost:3000/characters?name=${searchInput}`
+        );
         setData(response.data);
+        console.log(response.data.results);
 
         setIsLoading(false);
       } catch (error) {
@@ -27,7 +29,7 @@ const Characters = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [searchInput]);
 
   return isLoading ? (
     <p>En cours de chargement</p>
@@ -48,7 +50,6 @@ const Characters = () => {
               }}
               onChange={(event) => {
                 setSearchInput(event.target.value);
-                // handleSearch();
               }}
               value={searchInput}
             />
