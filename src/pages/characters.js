@@ -13,12 +13,13 @@ const Characters = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-
+  //const serverUrl = "http://localhost:3000";
+  const serverUrl = "https://marvel-sl.herokuapp.com";
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/characters?name=${searchInput}`
+          `${serverUrl}/characters?name=${searchInput}`
         );
         setData(response.data);
 

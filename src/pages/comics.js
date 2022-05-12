@@ -16,14 +16,14 @@ const Comics = () => {
   const [skip, setSkip] = useState(0);
   const [totalComics, setTotalComics] = useState(0);
   const limit = 50;
-  //const serverUrl = "http://localhost:3000/comics";
+  //const serverUrl = "http://localhost:3000";
   const serverUrl = "https://marvel-sl.herokuapp.com";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${serverUrl}?limit=${limit}&skip=${skip}&title=${searchInput}`
+          `${serverUrl}/comics?limit=${limit}&skip=${skip}&title=${searchInput}`
         );
         //console.log(response.data);
         console.log(response.data.count);
