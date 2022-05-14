@@ -18,8 +18,8 @@ const Characters = () => {
   const [total, setTotal] = useState(0);
   const [skip, setSkip] = useState(0);
   const limit = 30;
-  const serverUrl = "http://localhost:3000";
-  //const serverUrl = "https://marvel-sl.herokuapp.com";
+  //const serverUrl = "http://localhost:3000";
+  const serverUrl = "https://marvel-sl.herokuapp.com";
 
   useEffect(() => {
     const fetchData = async () => {

@@ -18,8 +18,8 @@ const Comics = () => {
   const [skip, setSkip] = useState(0);
   const limit = 50;
 
-  const serverUrl = "http://localhost:3000";
-  //const serverUrl = "https://marvel-sl.herokuapp.com";
+  //const serverUrl = "http://localhost:3000";
+  const serverUrl = "https://marvel-sl.herokuapp.com";
 
   useEffect(() => {
     const fetchData = async () => {

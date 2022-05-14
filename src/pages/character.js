@@ -13,8 +13,8 @@ const Character = () => {
 
   const { id } = useParams(); //Id character
 
-  const serverUrl = "http://localhost:3000";
-  //const serverUrl = "https://marvel-sl.herokuapp.com";
+  //const serverUrl = "http://localhost:3000";
+  const serverUrl = "https://marvel-sl.herokuapp.com";
   // console.log(id);
   useEffect(() => {
     const fetchDataCharacter = async () => {
