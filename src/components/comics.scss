@@ -9,7 +9,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      box-shadow: 0 4px 2px -2px gray;
+      box-shadow: 0 4px 2px -2px #ed171e;
 
       .previous-nav-hide {
         flex: 1;
@@ -24,29 +24,36 @@
         visibility: show;
         font-size: larger;
         cursor: pointer;
+        //background-color: yellow;
       }
 
       .search-bar {
         display: flex;
         flex: 1;
         justify-content: center;
-
+        // background-color: #ed171e;
+        opacity: 0.33;
+        padding-left: 15rem;
         .search-img {
           display: flex;
           align-items: center;
-          width: 15px;
+          width: 30px;
           color: #999999;
-          //margin-right: 5px;
+
+          margin-right: 5px;
         }
-        .search-characters {
-          width: 15rem;
-          line-height: 2rem;
-          margin-left: 5px;
-          font-size: medium;
-          color: #535353;
-          border: none;
-          outline: none;
-          background-color: transparent;
+        .search-characters-container {
+          .search-characters {
+            width: 30rem;
+            line-height: 2rem;
+            margin-left: 5px;
+            font-size: medium;
+            color: #535353;
+            border: none;
+            outline: none;
+            //  background-color: #ed171e;
+            z-index: 10;
+          }
         }
       }
 
@@ -55,6 +62,7 @@
         display: flex;
         align-items: center;
         visibility: hidden;
+        justify-content: flex-end;
       }
       .next-nav-show {
         flex: 1;
@@ -63,10 +71,36 @@
         visibility: show;
         cursor: pointer;
         font-size: larger;
+        justify-content: flex-end;
+        //background-color: yellow;
       }
     }
+  }
+
+  .search-and-autocomplet {
+    display: flex;
+
+    line-height: 2rem;
+    z-index: 0;
+    .col-1 {
+      flex: 1;
+    }
     .autocomplet-container {
+      flex: 1;
+      //    overflow-wrap: normal;
+      position: relative;
+      top: -3px;
+      opacity: 0.33;
+      justify-content: flex-start;
       overflow-y: hidden;
+      padding-left: 8rem;
+      .item-autocomplet {
+        text-align: left;
+        overflow-x: hidden;
+      }
+    }
+    .col-2 {
+      flex: 1;
     }
   }
 
@@ -74,32 +108,44 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding: 1rem;
+
     // padding-left: 10rem;
     .comic-card {
       display: flex;
-      padding: 2rem;
-      justify-content: space-between;
+      width: 30rem;
+      padding: 1rem;
+      justify-content: space-around;
       align-items: flex-start;
       border-top-right-radius: 5%;
       border-bottom-left-radius: 5%;
-      .card-title {
-        font-weight: bolder;
-        color: black;
-        text-decoration: none !important;
-        flex-wrap: wrap;
-        word-wrap: break-word;
-        margin-bottom: 3rem;
-      }
+
       .card-picture {
         width: 10rem;
         height: 17rem;
         object-fit: cover;
       }
-      .comic-description {
-        width: 20rem;
-      }
+
       .comic-informations {
+        // background-color: #999999;
+        // opacity: 0.33;
         justify-content: space-between;
+        .card-title {
+          // background-color: #999999;
+          //opacity: 0.33;
+          width: 10rem;
+          font-weight: bold;
+          color: black;
+          //text-decoration: none !important;
+          //flex-wrap: wrap;
+          // word-wrap: break-word;
+          margin-bottom: 1rem;
+        }
+        .comic-description {
+          width: 10rem;
+          height: 12rem;
+          overflow-y: hidden;
+        }
       }
     }
     .comic-card:hover {

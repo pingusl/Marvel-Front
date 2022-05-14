@@ -31,21 +31,26 @@ const Comics = () => {
         //console.log(response.data.count);
 
         setTotal(response.data.count);
-        //----Autocompletion Methode----//
         let completion = [];
-        for (let i = 0; i < response.data.results.length; i++) {
-          // console.log(response.data.results[i].title);
-          if (response.data.results[i].title.indexOf(searchInput) !== -1) {
-            if (completion.length < 5) {
-              completion.push(
-                <p key={response.data.results[i].title}>
-                  {response.data.results[i].title}
-                </p>
-              );
+        //----Autocompletion Methode----//
+        //console.log(tab);
+        if (searchInput === "") {
+          setTab([]);
+        } else {
+          for (let i = 0; i < response.data.results.length; i++) {
+            // console.log(response.data.results[i].title);
+            if (response.data.results[i].title.indexOf(searchInput) !== -1) {
+              if (completion.length < 3) {
+                completion.push(
+                  <p key={response.data.results[i].title}>
+                    {response.data.results[i].title}
+                  </p>
+                );
+              }
             }
           }
         }
-        console.log(completion);
+
         setTab(completion);
 
         setData(response.data);
@@ -84,7 +89,8 @@ const Comics = () => {
                 key="search-img"
               />
             </div>
-            <div className="search-characters">
+
+            <div className="search-characters-container">
               <input
                 className="search-characters"
                 placeholder="Find your Favorite Title"
@@ -112,15 +118,18 @@ const Comics = () => {
             <img src={nextArrow} alt="next" />
           </div>
         </nav>
-        <div className="autocomplet-container">
-          {tab.map((autocomplet) => {
-            //console.log(test);
-
-            return <p>{autocomplet.props.children}</p>;
-          })}
-        </div>
       </div>
-
+      <div className="search-and-autocomplet">
+        <div className="col-1"></div>
+        <ul className="autocomplet-container">
+          {tab.map((autocomplet) => {
+            return (
+              <li className="item-autocomplet">{autocomplet.props.children}</li>
+            );
+          })}
+        </ul>
+        <div className="col-2"></div>
+      </div>
       <div className="comics-cards">
         {data.results.map((comic, key) => {
           const imgUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
@@ -138,7 +147,7 @@ const Comics = () => {
                   </div>
                   <div className="comic-informations">
                     <div className="card-title">
-                      <h2>{comic.title}</h2>
+                      <h4>{comic.title}</h4>
                     </div>
                     <div className="comic-description">{comic.description}</div>
                   </div>

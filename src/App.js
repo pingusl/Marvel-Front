@@ -8,6 +8,7 @@ import Characters from "./pages/characters";
 import Character from "./pages/character";
 import Comics from "./pages/comics";
 import Comic from "./pages/comic";
+import "./components/reset.css";
 import "./App.scss";
 
 function App() {
