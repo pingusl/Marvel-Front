@@ -6,15 +6,18 @@ import axios from "axios";
 //----Loading CSS----//
 import "../components/characters.scss";
 
-//----Loading searchImg----//
+//----Loading Img----//
 import searchImage from "../img/loupe.svg";
+import previousArrow from "../img/Antu_arrow-left.png";
+import nextArrow from "../img/Antu_arrow-right.png";
 
 const Characters = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [totalCharacters, setTotalCharacters] = useState(0);
   const [skip, setSkip] = useState(0);
-  const limit = 50;
+  const limit = 30;
   const serverUrl = "http://localhost:3000";
   //const serverUrl = "https://marvel-sl.herokuapp.com";
 
@@ -25,7 +28,7 @@ const Characters = () => {
           `${serverUrl}/characters?limit=${limit}&skip=${skip}&name=${searchInput}`
         );
         setData(response.data);
-
+        setTotalCharacters(response.data.count);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -39,25 +42,56 @@ const Characters = () => {
   ) : (
     <div className="characters-container">
       <div className="search-bar-container">
-        <div className="search-bar">
-          <div className="search-img">
-            <img className="search-img" src={searchImage} alt="search" />
-          </div>
-          <div className="search-characters">
-            <input
-              className="search-characters"
-              placeholder="Find your Favorite character"
-              type="text"
-              onClick={(event) => {
-                setSearchInput("");
+        <nav className="navigate">
+          <div className="previous-nav">
+            <img
+              className={
+                skip < limit ? "arrow-previous-hide" : "arrow-previous-show"
+              }
+              src={previousArrow}
+              alt="previous"
+              onClick={() => {
+                let memPrevious = skip - limit;
+                setSkip(memPrevious);
               }}
-              onChange={(event) => {
-                setSearchInput(event.target.value);
-              }}
-              value={searchInput}
+              key="previous-img"
             />
           </div>
-        </div>
+          <div className="search-bar">
+            <div className="search-img">
+              <img className="search-img" src={searchImage} alt="search" />
+            </div>
+            <div className="search-characters">
+              <input
+                className="search-characters"
+                placeholder="Find your Favorite Title"
+                type="text"
+                onClick={(event) => {
+                  setSearchInput("");
+                }}
+                onChange={(event) => {
+                  setSearchInput(event.target.value);
+                }}
+                value={searchInput}
+                key="search-input"
+              />
+            </div>
+          </div>
+          <div className="next-nav">
+            <img
+              className={
+                skip > totalCharacters ? "arrow-next-hide" : "arrow-next-show"
+              }
+              src={nextArrow}
+              alt="next"
+              onClick={() => {
+                let memNext = skip + limit;
+                setSkip(memNext);
+              }}
+              key="next-img"
+            />
+          </div>
+        </nav>
       </div>
 
       <div className="carrousel">

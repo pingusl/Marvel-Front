@@ -26,7 +26,7 @@ const Comics = () => {
           `${serverUrl}/comics?limit=${limit}&skip=${skip}&title=${searchInput}`
         );
         //console.log(response.data);
-        //console.log(response.data.count);
+        console.log(response.data.count);
         //console.log(skip);
         setTotalComics(response.data.count);
         //----Sort Methode----//
