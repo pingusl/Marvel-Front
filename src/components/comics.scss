@@ -11,10 +11,10 @@
       box-shadow: 0 4px 2px -2px gray;
       .previous-nav {
         flex: 1;
-        .img-previous-cards-hide {
-          visibility: hide;
+        .arrow-previous-hide {
+          visibility: hidden;
         }
-        .img-previous-cards-show {
+        .arrow-previous-show {
           visibility: show;
         }
       }
@@ -44,10 +44,10 @@
       }
       .next-nav {
         flex: 1;
-        .img-next-cards-hide {
-          visibility: hide;
+        .arrow-next-hide {
+          visibility: hidden;
         }
-        .img-next-cards-show {
+        .arrow-next-show {
           visibility: show;
         }
       }
@@ -64,6 +64,8 @@
       padding: 2rem;
       justify-content: space-between;
       align-items: flex-start;
+      border-top-right-radius: 5%;
+      border-bottom-left-radius: 5%;
       .card-title {
         font-weight: bolder;
         color: black;

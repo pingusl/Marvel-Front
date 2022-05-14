@@ -13,8 +13,8 @@ const Character = () => {
 
   const { id } = useParams(); //Id character
 
-  //const serverUrl = "http://localhost:3000";
-  const serverUrl = "https://marvel-sl.herokuapp.com";
+  const serverUrl = "http://localhost:3000";
+  //const serverUrl = "https://marvel-sl.herokuapp.com";
   // console.log(id);
   useEffect(() => {
     const fetchDataCharacter = async () => {
@@ -41,7 +41,7 @@ const Character = () => {
     const fetchDataComics = async () => {
       try {
         const responseComics = await axios.get(`${serverUrl}/comics/${id}`);
-        console.log(responseComics.data.comics); //.comics[0].title
+        // console.log(responseComics.data.comics); //.comics[0].title
         setDataComics(responseComics.data.comics);
         setIsLoading(false);
       } catch (error) {

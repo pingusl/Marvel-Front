@@ -13,8 +13,9 @@ const Characters = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  //const serverUrl = "http://localhost:3000";
-  const serverUrl = "https://marvel-sl.herokuapp.com";
+  const serverUrl = "http://localhost:3000";
+  //const serverUrl = "https://marvel-sl.herokuapp.com";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,24 +62,31 @@ const Characters = () => {
         {data.results.map((character, key) => {
           const imgUrl =
             character.thumbnail.path + "." + character.thumbnail.extension;
-          return (
-            <Link
-              className="card-container"
-              to={"/character/" + character._id}
-              key={character._id}
-            >
-              <div className="character-card">
-                <img className="img-character" src={imgUrl} alt="" />
+          console.log(imgUrl.indexOf("image_not_available"));
 
-                <div className="name-card" key={character.name}>
-                  {character.name}
-                </div>
-                <div className="name-description" key={key}>
-                  {character.description}
-                </div>
-              </div>
-            </Link>
-          );
+          if (imgUrl.indexOf("image_not_available") === -1) {
+            console.log(imgUrl);
+            if (imgUrl.indexOf("4c002e0305708") === -1) {
+              return (
+                <Link
+                  className="card-container"
+                  to={"/character/" + character._id}
+                  key={character._id}
+                >
+                  <div className="character-card">
+                    <img className="img-character" src={imgUrl} alt="" />
+
+                    <div className="name-card" key={character.name}>
+                      {character.name}
+                    </div>
+                    <div className="name-description" key={key}>
+                      {character.description}
+                    </div>
+                  </div>
+                </Link>
+              );
+            } else return null;
+          } else return null;
         })}
       </div>
     </div>

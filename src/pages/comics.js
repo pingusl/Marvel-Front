@@ -16,8 +16,8 @@ const Comics = () => {
   const [skip, setSkip] = useState(0);
   const [totalComics, setTotalComics] = useState(0);
   const limit = 50;
-  //const serverUrl = "http://localhost:3000";
-  const serverUrl = "https://marvel-sl.herokuapp.com";
+  const serverUrl = "http://localhost:3000";
+  //const serverUrl = "https://marvel-sl.herokuapp.com";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,8 +26,8 @@ const Comics = () => {
           `${serverUrl}/comics?limit=${limit}&skip=${skip}&title=${searchInput}`
         );
         //console.log(response.data);
-        console.log(response.data.count);
-        console.log(skip);
+        //console.log(response.data.count);
+        //console.log(skip);
         setTotalComics(response.data.count);
         //----Sort Methode----//
         // const tab = [];
@@ -58,16 +58,15 @@ const Comics = () => {
           <div className="previous-nav">
             <img
               className={
-                skip < 2 * limit
-                  ? "img-previous-cards-hide"
-                  : "img-previous-cards-show"
+                skip < limit ? "arrow-previous-hide" : "arrow-previous-show"
               }
               src={previousArrow}
               alt="previous"
               onClick={() => {
-                setSkip(skip - limit);
+                let memPrevious = skip - limit;
+                setSkip(memPrevious);
               }}
-              key="previous"
+              key="previous-img"
             />
           </div>
           <div className="search-bar">
@@ -86,22 +85,22 @@ const Comics = () => {
                   setSearchInput(event.target.value);
                 }}
                 value={searchInput}
-                key="next"
+                key="search-input"
               />
             </div>
           </div>
           <div className="next-nav">
             <img
               className={
-                skip > totalComics
-                  ? "img-next-cards-hide"
-                  : "img-next-cards-show"
+                skip > totalComics ? "arrow-next-hide" : "arrow-next-show"
               }
               src={nextArrow}
               alt="next"
               onClick={() => {
-                setSkip(skip + limit);
+                let memNext = skip + limit;
+                setSkip(memNext);
               }}
+              key="next-img"
             />
           </div>
         </nav>
@@ -110,18 +109,28 @@ const Comics = () => {
       <div className="comics-cards">
         {data.results.map((comic, key) => {
           const imgUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
-
-          return (
-            <div className="comic-card">
-              <div>
-                <img className="card-picture" src={imgUrl} alt={comic.title} />
-              </div>
-              <div classname="comic-informations">
-                <div className="card-title">{comic.title}</div>
-                <div className="comic-description">{comic.description}</div>
-              </div>
-            </div>
-          );
+          if (imgUrl.indexOf("image_not_available") === -1) {
+            if (imgUrl.indexOf("4c002e0305708") === -1) {
+              const card = (
+                <div className="comic-card">
+                  <div>
+                    <img
+                      className="card-picture"
+                      src={imgUrl}
+                      alt={comic.title}
+                    />
+                  </div>
+                  <div className="comic-informations">
+                    <div className="card-title">
+                      <h2>{comic.title}</h2>
+                    </div>
+                    <div className="comic-description">{comic.description}</div>
+                  </div>
+                </div>
+              );
+              return card;
+            } else return null;
+          } else return null;
         })}
       </div>
     </div>
