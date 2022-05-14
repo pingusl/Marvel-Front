@@ -13,9 +13,11 @@ const Comics = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [totalComics, setTotalComics] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [tab, setTab] = useState([]);
   const [skip, setSkip] = useState(0);
   const limit = 50;
+
   const serverUrl = "http://localhost:3000";
   //const serverUrl = "https://marvel-sl.herokuapp.com";
 
@@ -25,19 +27,26 @@ const Comics = () => {
         const response = await axios.get(
           `${serverUrl}/comics?limit=${limit}&skip=${skip}&title=${searchInput}`
         );
-        //console.log(response.data);
-        console.log(response.data.count);
-        //console.log(skip);
-        setTotalComics(response.data.count);
-        //----Sort Methode----//
-        // const tab = [];
-        // response.data.results
-        //   .map((comic, key) => {
-        //     tab.push(comic.title);
-        //     return false;
-        //   })
-        //   .sort();
-        // console.log(tab);
+        //console.log(response.data.results);
+        //console.log(response.data.count);
+
+        setTotal(response.data.count);
+        //----Autocompletion Methode----//
+        let completion = [];
+        for (let i = 0; i < response.data.results.length; i++) {
+          // console.log(response.data.results[i].title);
+          if (response.data.results[i].title.indexOf(searchInput) !== -1) {
+            if (completion.length < 5) {
+              completion.push(
+                <p key={response.data.results[i].title}>
+                  {response.data.results[i].title}
+                </p>
+              );
+            }
+          }
+        }
+        console.log(completion);
+        setTab(completion);
 
         setData(response.data);
 
@@ -55,23 +64,25 @@ const Comics = () => {
     <div className="comics-container">
       <div className="search-bar-container">
         <nav className="navigate">
-          <div className="previous-nav">
-            <img
-              className={
-                skip < limit ? "arrow-previous-hide" : "arrow-previous-show"
-              }
-              src={previousArrow}
-              alt="previous"
-              onClick={() => {
-                let memPrevious = skip - limit;
-                setSkip(memPrevious);
-              }}
-              key="previous-img"
-            />
+          <div
+            className={skip < limit ? "previous-nav-hide" : "previous-nav-show"}
+            onClick={() => {
+              let memPrevious = skip - limit;
+              setSkip(memPrevious);
+            }}
+            key="previous-img"
+          >
+            <img src={previousArrow} alt="previous" />
+            <div className="nav-prev-text">PREV</div>
           </div>
           <div className="search-bar">
             <div className="search-img">
-              <img className="search-img" src={searchImage} alt="search" />
+              <img
+                className="search-img"
+                src={searchImage}
+                alt="search"
+                key="search-img"
+              />
             </div>
             <div className="search-characters">
               <input
@@ -89,21 +100,25 @@ const Comics = () => {
               />
             </div>
           </div>
-          <div className="next-nav">
-            <img
-              className={
-                skip > totalComics ? "arrow-next-hide" : "arrow-next-show"
-              }
-              src={nextArrow}
-              alt="next"
-              onClick={() => {
-                let memNext = skip + limit;
-                setSkip(memNext);
-              }}
-              key="next-img"
-            />
+          <div
+            className={skip > total - limit ? "next-nav-hide" : "next-nav-show"}
+            onClick={() => {
+              let memNext = skip + limit;
+              setSkip(memNext);
+            }}
+            key="next-img"
+          >
+            <div className="nav-next-text">NEXT</div>
+            <img src={nextArrow} alt="next" />
           </div>
         </nav>
+        <div className="autocomplet-container">
+          {tab.map((autocomplet) => {
+            //console.log(test);
+
+            return <p>{autocomplet.props.children}</p>;
+          })}
+        </div>
       </div>
 
       <div className="comics-cards">
@@ -118,6 +133,7 @@ const Comics = () => {
                       className="card-picture"
                       src={imgUrl}
                       alt={comic.title}
+                      key={comic.title}
                     />
                   </div>
                   <div className="comic-informations">

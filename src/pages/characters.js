@@ -15,7 +15,7 @@ const Characters = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [totalCharacters, setTotalCharacters] = useState(0);
+  const [total, setTotal] = useState(0);
   const [skip, setSkip] = useState(0);
   const limit = 30;
   const serverUrl = "http://localhost:3000";
@@ -28,7 +28,7 @@ const Characters = () => {
           `${serverUrl}/characters?limit=${limit}&skip=${skip}&name=${searchInput}`
         );
         setData(response.data);
-        setTotalCharacters(response.data.count);
+        setTotal(response.data.count);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -43,19 +43,16 @@ const Characters = () => {
     <div className="characters-container">
       <div className="search-bar-container">
         <nav className="navigate">
-          <div className="previous-nav">
-            <img
-              className={
-                skip < limit ? "arrow-previous-hide" : "arrow-previous-show"
-              }
-              src={previousArrow}
-              alt="previous"
-              onClick={() => {
-                let memPrevious = skip - limit;
-                setSkip(memPrevious);
-              }}
-              key="previous-img"
-            />
+          <div
+            className={skip < limit ? "previous-nav-hide" : "previous-nav-show"}
+            onClick={() => {
+              let memPrevious = skip - limit;
+              setSkip(memPrevious);
+            }}
+            key="previous-img"
+          >
+            <img src={previousArrow} alt="previous" />
+            <div className="nav-prev-text">PREV</div>
           </div>
           <div className="search-bar">
             <div className="search-img">
@@ -64,7 +61,7 @@ const Characters = () => {
             <div className="search-characters">
               <input
                 className="search-characters"
-                placeholder="Find your Favorite Title"
+                placeholder="Find your Favorite Characters"
                 type="text"
                 onClick={(event) => {
                   setSearchInput("");
@@ -77,19 +74,16 @@ const Characters = () => {
               />
             </div>
           </div>
-          <div className="next-nav">
-            <img
-              className={
-                skip > totalCharacters ? "arrow-next-hide" : "arrow-next-show"
-              }
-              src={nextArrow}
-              alt="next"
-              onClick={() => {
-                let memNext = skip + limit;
-                setSkip(memNext);
-              }}
-              key="next-img"
-            />
+          <div
+            className={skip > total - limit ? "next-nav-hide" : "next-nav-show"}
+            onClick={() => {
+              let memNext = skip + limit;
+              setSkip(memNext);
+            }}
+            key="next-img"
+          >
+            <div className="nav-next-text">NEXT</div>
+            <img src={nextArrow} alt="next" />
           </div>
         </nav>
       </div>

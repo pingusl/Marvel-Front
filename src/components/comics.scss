@@ -7,16 +7,23 @@
     .navigate {
       width: 100%;
       display: flex;
+      justify-content: space-around;
       align-items: center;
       box-shadow: 0 4px 2px -2px gray;
-      .previous-nav {
+
+      .previous-nav-hide {
         flex: 1;
-        .arrow-previous-hide {
-          visibility: hidden;
-        }
-        .arrow-previous-show {
-          visibility: show;
-        }
+        display: flex;
+        align-items: center;
+        visibility: hidden;
+      }
+      .previous-nav-show {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        visibility: show;
+        font-size: larger;
+        cursor: pointer;
       }
 
       .search-bar {
@@ -42,15 +49,24 @@
           background-color: transparent;
         }
       }
-      .next-nav {
+
+      .next-nav-hide {
         flex: 1;
-        .arrow-next-hide {
-          visibility: hidden;
-        }
-        .arrow-next-show {
-          visibility: show;
-        }
+        display: flex;
+        align-items: center;
+        visibility: hidden;
       }
+      .next-nav-show {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        visibility: show;
+        cursor: pointer;
+        font-size: larger;
+      }
+    }
+    .autocomplet-container {
+      overflow-y: hidden;
     }
   }
 
