@@ -20,9 +20,7 @@ const Character = () => {
     const fetchDataCharacter = async () => {
       try {
         // Je fais une requête à mon serveur en donnent l'id du personnage en params
-        const response = await axios.get(
-          `http://localhost:3000/character/${id}`
-        );
+        const response = await axios.get(`${serverUrl}/character/${id}`);
         //  console.log(response.data.comics);
         setImgUrl(
           response.data.thumbnail.path + "." + response.data.thumbnail.extension
