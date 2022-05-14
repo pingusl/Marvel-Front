@@ -13,8 +13,8 @@ const Comics = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [skip, setSkip] = useState(0);
   const [totalComics, setTotalComics] = useState(0);
+  const [skip, setSkip] = useState(0);
   const limit = 50;
   const serverUrl = "http://localhost:3000";
   //const serverUrl = "https://marvel-sl.herokuapp.com";

@@ -13,6 +13,8 @@ const Characters = () => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [skip, setSkip] = useState(0);
+  const limit = 50;
   const serverUrl = "http://localhost:3000";
   //const serverUrl = "https://marvel-sl.herokuapp.com";
 
@@ -20,7 +22,7 @@ const Characters = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${serverUrl}/characters?name=${searchInput}`
+          `${serverUrl}/characters?limit=${limit}&skip=${skip}&name=${searchInput}`
         );
         setData(response.data);
 
@@ -30,7 +32,7 @@ const Characters = () => {
       }
     };
     fetchData();
-  }, [searchInput]);
+  }, [searchInput, skip]);
 
   return isLoading ? (
     <p>En cours de chargement</p>
@@ -62,10 +64,8 @@ const Characters = () => {
         {data.results.map((character, key) => {
           const imgUrl =
             character.thumbnail.path + "." + character.thumbnail.extension;
-          console.log(imgUrl.indexOf("image_not_available"));
 
           if (imgUrl.indexOf("image_not_available") === -1) {
-            console.log(imgUrl);
             if (imgUrl.indexOf("4c002e0305708") === -1) {
               return (
                 <Link
