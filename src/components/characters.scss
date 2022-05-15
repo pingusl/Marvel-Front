@@ -100,5 +100,9 @@
     .card-container:hover {
       background-color: #ed171e;
     }
+
+    .name-description {
+      max-height: max-content;
+    }
   }
 }
