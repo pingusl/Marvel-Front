@@ -10,9 +10,6 @@ import "../components/character.scss";
 import heartOff from "../img/heart-off.png";
 import heartOn from "../img/heart-on.png";
 
-//----Setting Cookies----//
-//Cookies.set("favorisCharacters", "");
-
 const Character = () => {
   const [data, setData] = useState();
   const [dataComics, setDataComics] = useState();
@@ -25,25 +22,23 @@ const Character = () => {
 
   //const serverUrl = "http://localhost:3000";
   const serverUrl = "https://marvel-sl.herokuapp.com";
-  //console.log(id);
 
   useEffect(() => {
     const fetchDataCharacter = async () => {
       try {
-        // Je fais une requête à mon serveur en donnent l'id du personnage en params
         const response = await axios.get(`${serverUrl}/character/${id}`);
-        //  console.log(response.data.comics);
+
         setImgUrl(
           response.data.thumbnail.path + "." + response.data.thumbnail.extension
         );
         setData(response.data);
 
         const responseComics = await axios.get(`${serverUrl}/comics/${id}`);
-        // console.log(responseComics.data.comics); //.comics[0].title
+
         setDataComics(responseComics.data.comics);
         setIsLoading(false);
-        //----Check if this characters is a favoris----//
 
+        //----Check if this characters is a favoris----//
         if (
           Cookies.get("favorisCharacters").indexOf(id) === -1 ||
           Cookies.get("favorisCharacters").indexOf(id) === undefined
@@ -52,16 +47,12 @@ const Character = () => {
         } else {
           setFav(true);
         }
-
-        console.log(`status favoris = ${fav}`);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchDataCharacter();
-  }, [id, fav]);
-
-  //----Test toogle fav----//
+  }, [id]);
 
   const favHandleClick = (event) => {
     event.preventDefault();
@@ -69,20 +60,10 @@ const Character = () => {
     let newList = "";
 
     if (Cookies.get("favorisCharacters")) {
-      //--Console.log----//
-      // console.log("Avant action sur coeur");
-      // console.log(`Liste id in cookie : ${listFavorisCharacters}`);
-      // console.log(`Id value : ${id}`);
-      // console.log(
-      //   `indexOf(id) value : ${Cookies.get("favorisCharacters").indexOf(id)}`
-      // );
-
       if (Cookies.get("favorisCharacters").indexOf(id) !== -1) {
-        // //L'utilisateur a cliqué alors que l'id existe dans le cookie//
-        // //Il faut donc retirer l'id du cookie//
         setFav(false);
         newList = listFavorisCharacters.replace(id + ",", "");
-        // //Puis mettre a jour le cookie qui ne doit plus mémoriser l'id//
+
         Cookies.set("favorisCharacters", newList);
       } else {
         setFav(true);
