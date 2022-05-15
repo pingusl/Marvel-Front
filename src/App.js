@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 
 import logo from "./img/logo.png";
+import ironMan from "./img/iron-man.png";
 
 //----Load Pages----//
 import Characters from "./pages/characters";
@@ -22,6 +23,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="header">
+          <img className="iron-man" src={ironMan} alt="iron-man" />
           <Link className="header-characters" to="/characters">
             <h1 className="header-characters">Characters</h1>
           </Link>
