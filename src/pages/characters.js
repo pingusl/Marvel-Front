@@ -10,8 +10,9 @@ import "../components/characters.scss";
 import searchImage from "../img/loupe.svg";
 import previousArrow from "../img/Antu_arrow-left.png";
 import nextArrow from "../img/Antu_arrow-right.png";
-import favorisOn from "../img/favoris-on.png";
+import favorisOn from "../img/bouclier.png";
 import favorisOff from "../img/favoris-off.png";
+import Cookies from "js-cookie";
 
 const Characters = () => {
   const [data, setData] = useState();
@@ -29,6 +30,7 @@ const Characters = () => {
         const response = await axios.get(
           `${serverUrl}/characters?limit=${limit}&skip=${skip}&name=${searchInput}`
         );
+        console.log(response.data);
         setData(response.data);
         setTotal(response.data.count);
         setIsLoading(false);
@@ -109,7 +111,17 @@ const Characters = () => {
                       src={imgUrl}
                       alt="{character.name}"
                     />
-                    <img className="img-favoris" src={favorisOn} alt="favIn" />
+                    <img
+                      className={
+                        Cookies.get("favorisCharacters").indexOf(
+                          character._id
+                        ) === -1
+                          ? "img-favoris-hide"
+                          : "img-favoris-show"
+                      }
+                      src={favorisOn}
+                      alt="favIn"
+                    />
                     <img
                       className="img-standard"
                       src={favorisOff}
