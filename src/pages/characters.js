@@ -35,7 +35,6 @@ const Characters = ({
         const response = await axios.get(
           `${serverUrl}/characters?limit=${limit}&skip=${skipCharacters}&name=${searchInput}`
         );
-        //console.log(response.data);
 
         setData(response.data);
         setTotalCharacters(response.data.count);
