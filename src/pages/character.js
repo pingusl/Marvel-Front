@@ -77,7 +77,6 @@ const Character = () => {
       Cookies.set("favorisCharacters", id + ",");
       setFav(true);
     }
-    console.log(`Valeur fav= ${fav}`);
   };
 
   return isLoading ? (
@@ -91,13 +90,9 @@ const Character = () => {
             className="fav-on"
             src={fav ? heartOn : heartOff}
             alt="heart-off"
-            onClick={
-              (event) => {
-                favHandleClick(event);
-              }
-
-              //setFav(true);
-            }
+            onClick={(event) => {
+              favHandleClick(event);
+            }}
           />
           <img className="img-character" src={imgUrl} alt={data.name} />
         </div>

@@ -11,15 +11,14 @@ import searchImage from "../img/loupe.svg";
 import previousArrow from "../img/Antu_arrow-left.png";
 import nextArrow from "../img/Antu_arrow-right.png";
 import favorisOn from "../img/bouclier.png";
-import favorisOff from "../img/favoris-off.png";
 import Cookies from "js-cookie";
 
-const Characters = () => {
+const Characters = ({ skipCharacters, setSkipCharacters }) => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [total, setTotal] = useState(0);
-  const [skip, setSkip] = useState(0);
+  // const [skipCharacters, setSkipCharacters] = useState(0);
   const limit = 30;
   //const serverUrl = "http://localhost:3000";
   const serverUrl = "https://marvel-sl.herokuapp.com";
@@ -28,9 +27,10 @@ const Characters = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${serverUrl}/characters?limit=${limit}&skip=${skip}&name=${searchInput}`
+          `${serverUrl}/characters?limit=${limit}&skip=${skipCharacters}&name=${searchInput}`
         );
-        console.log(response.data);
+        //console.log(response.data);
+
         setData(response.data);
         setTotal(response.data.count);
         setIsLoading(false);
@@ -39,7 +39,7 @@ const Characters = () => {
       }
     };
     fetchData();
-  }, [searchInput, skip]);
+  }, [searchInput, skipCharacters]);
 
   return isLoading ? (
     <p>En cours de chargement</p>
@@ -48,10 +48,12 @@ const Characters = () => {
       <div className="search-bar-container">
         <nav className="navigate">
           <div
-            className={skip < limit ? "previous-nav-hide" : "previous-nav-show"}
+            className={
+              skipCharacters < limit ? "previous-nav-hide" : "previous-nav-show"
+            }
             onClick={() => {
-              let memPrevious = skip - limit;
-              setSkip(memPrevious);
+              let memPrevious = skipCharacters - limit;
+              setSkipCharacters(memPrevious);
             }}
             key="previous-img"
           >
@@ -72,6 +74,7 @@ const Characters = () => {
                 }}
                 onChange={(event) => {
                   setSearchInput(event.target.value);
+                  setSkipCharacters("");
                 }}
                 value={searchInput}
                 key="search-input"
@@ -79,10 +82,12 @@ const Characters = () => {
             </div>
           </div>
           <div
-            className={skip > total - limit ? "next-nav-hide" : "next-nav-show"}
+            className={
+              skipCharacters > total - limit ? "next-nav-hide" : "next-nav-show"
+            }
             onClick={() => {
-              let memNext = skip + limit;
-              setSkip(memNext);
+              let memNext = skipCharacters + limit;
+              setSkipCharacters(memNext);
             }}
             key="next-img"
           >
