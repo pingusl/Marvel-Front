@@ -2,12 +2,12 @@
   //justify-content: center;
   .search-bar-container {
     display: flex;
-    //justify-content: center;
+    justify-content: center;
     .navigate {
       width: 100%;
       display: flex;
       align-items: center;
-
+      justify-content: center;
       box-shadow: 0 4px 2px -2px #ed171e;
       .previous-nav-hide {
         flex: 1;
@@ -18,6 +18,7 @@
       .previous-nav-show {
         flex: 1;
         display: flex;
+        justify-content: flex-end;
         align-items: center;
         visibility: show;
         font-size: larger;

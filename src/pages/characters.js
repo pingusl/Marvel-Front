@@ -122,12 +122,6 @@ const Characters = () => {
                       src={favorisOn}
                       alt="favIn"
                     />
-                    <img
-                      className="img-standard"
-                      src={favorisOff}
-                      alt="favOff"
-                    />
-
                     <div className="name-card" key={character.name}>
                       {character.name}
                     </div>
