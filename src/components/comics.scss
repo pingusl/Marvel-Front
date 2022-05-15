@@ -7,7 +7,7 @@
     .navigate {
       width: 100%;
       display: flex;
-      justify-content: space-around;
+      //justify-content: space-around;
       align-items: center;
       box-shadow: 0 4px 2px -2px #ed171e;
 
@@ -33,7 +33,7 @@
         justify-content: center;
         // background-color: #ed171e;
         opacity: 0.33;
-        padding-left: 15rem;
+        padding-left: 2rem;
         .search-img {
           display: flex;
           align-items: center;
@@ -44,7 +44,7 @@
         }
         .search-characters-container {
           .search-characters {
-            width: 30rem;
+            width: 20rem;
             line-height: 2rem;
             margin-left: 5px;
             font-size: medium;

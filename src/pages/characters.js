@@ -10,6 +10,8 @@ import "../components/characters.scss";
 import searchImage from "../img/loupe.svg";
 import previousArrow from "../img/Antu_arrow-left.png";
 import nextArrow from "../img/Antu_arrow-right.png";
+import favorisOn from "../img/favoris-on.png";
+import favorisOff from "../img/favoris-off.png";
 
 const Characters = () => {
   const [data, setData] = useState();
@@ -102,7 +104,17 @@ const Characters = () => {
                   key={character._id}
                 >
                   <div className="character-card">
-                    <img className="img-character" src={imgUrl} alt="" />
+                    <img
+                      className="img-character"
+                      src={imgUrl}
+                      alt="{character.name}"
+                    />
+                    <img className="img-favoris" src={favorisOn} alt="favIn" />
+                    <img
+                      className="img-standard"
+                      src={favorisOff}
+                      alt="favOff"
+                    />
 
                     <div className="name-card" key={character.name}>
                       {character.name}

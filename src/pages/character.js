@@ -5,17 +5,22 @@ import { useParams } from "react-router-dom";
 //----Loading CSS----//
 import "../components/character.scss";
 
+//----Loading img----//
+import heartOff from "../img/heart-off.png";
+import heartOn from "../img/heart-on.png";
+
 const Character = () => {
   const [data, setData] = useState();
   const [dataComics, setDataComics] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [fav, setFav] = useState(false);
 
   const { id } = useParams(); //Id character
 
   //const serverUrl = "http://localhost:3000";
   const serverUrl = "https://marvel-sl.herokuapp.com";
-  // console.log(id);
+  console.log(id);
   useEffect(() => {
     const fetchDataCharacter = async () => {
       try {
@@ -48,6 +53,22 @@ const Character = () => {
     };
     fetchDataComics();
   }, [id]);
+  //----Test toogle fav----//
+  const favHandleClick = (event) => {
+    //event.preventDefault();
+    if (fav === true) {
+      console.log(fav);
+      setFav(false);
+    } else {
+      setFav(true);
+    }
+  };
+
+  // useEffect(() => {
+
+  //   };
+  //   favHandleClick();
+  // }, []);
 
   return isLoading ? (
     <p>Veuillez patienter ...pour ce personnage</p>
@@ -56,14 +77,23 @@ const Character = () => {
       <h1>{data.name}</h1>
       <div className="character-filmography">
         <div className="col-1">
+          <img
+            className="fav-on"
+            src={fav === true ? heartOn : heartOff}
+            alt="heart-off"
+            onClick={() => {
+              //fav === true ? setFav(false) : setFav(true);
+              favHandleClick();
+            }}
+          />
           <img className="img-character" src={imgUrl} alt={data.name} />
         </div>
         <div className="col-2">
           {dataComics.map((comics, key) => {
             return (
-              <button className="card" key={key}>
+              <p className="card" key={key}>
                 {comics.title}
-              </button>
+              </p>
             );
           })}
         </div>

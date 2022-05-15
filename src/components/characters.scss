@@ -7,7 +7,8 @@
       width: 100%;
       display: flex;
       align-items: center;
-      box-shadow: 0 4px 2px -2px gray;
+
+      box-shadow: 0 4px 2px -2px #ed171e;
       .previous-nav-hide {
         flex: 1;
         display: flex;
@@ -67,6 +68,7 @@
     display: flex;
     overflow-x: hidden;
     overflow-x: scroll;
+    box-shadow: 0 4px 2px -2px #ed171e;
     .card-container {
       width: 10rem;
       color: white;
