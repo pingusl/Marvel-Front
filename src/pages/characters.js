@@ -45,7 +45,7 @@ const Characters = ({
       }
     };
     fetchData();
-  }, [searchInput, skipCharacters]);
+  }, [searchInput, skipCharacters, setTotalCharacters]);
 
   return isLoading ? (
     <p>En cours de chargement</p>
