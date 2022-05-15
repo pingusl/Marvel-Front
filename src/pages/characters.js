@@ -18,11 +18,12 @@ const Characters = ({
   setSkipCharacters,
   searchInput,
   setSearchInput,
+  totalCharacters,
+  setTotalCharacters,
 }) => {
   const [data, setData] = useState();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [total, setTotal] = useState(0);
 
   const limit = 30;
   //const serverUrl = "http://localhost:3000";
@@ -37,7 +38,7 @@ const Characters = ({
         //console.log(response.data);
 
         setData(response.data);
-        setTotal(response.data.count);
+        setTotalCharacters(response.data.count);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -88,7 +89,9 @@ const Characters = ({
           </div>
           <div
             className={
-              skipCharacters > total - limit ? "next-nav-hide" : "next-nav-show"
+              skipCharacters > totalCharacters - limit
+                ? "next-nav-hide"
+                : "next-nav-show"
             }
             onClick={() => {
               let memNext = skipCharacters + limit;

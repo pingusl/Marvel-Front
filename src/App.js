@@ -16,6 +16,7 @@ function App() {
   //----States---//
   const [skipCharacters, setSkipCharacters] = useState(0);
   const [searchInput, setSearchInput] = useState("");
+  const [totalCharacters, setTotalCharacters] = useState(0);
 
   return (
     <Router>
@@ -41,6 +42,8 @@ function App() {
                     setSkipCharacters={setSkipCharacters}
                     searchInput={searchInput}
                     setSearchInput={setSearchInput}
+                    totalCharacters={totalCharacters}
+                    setTotalCharacters={setTotalCharacters}
                   />
                 }
               />
