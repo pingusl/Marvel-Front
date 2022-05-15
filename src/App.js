@@ -15,6 +15,7 @@ import "./App.scss";
 function App() {
   //----States---//
   const [skipCharacters, setSkipCharacters] = useState(0);
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <Router>
@@ -38,6 +39,8 @@ function App() {
                   <Characters
                     skipCharacters={skipCharacters}
                     setSkipCharacters={setSkipCharacters}
+                    searchInput={searchInput}
+                    setSearchInput={setSearchInput}
                   />
                 }
               />
