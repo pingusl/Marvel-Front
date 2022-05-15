@@ -10,12 +10,16 @@ import "../components/character.scss";
 import heartOff from "../img/heart-off.png";
 import heartOn from "../img/heart-on.png";
 
+//----Setting Cookies----//
+//Cookies.set("favorisCharacters", "");
+
 const Character = () => {
   const [data, setData] = useState();
   const [dataComics, setDataComics] = useState();
   const [imgUrl, setImgUrl] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [fav, setFav] = useState(false);
+
+  //const [fav, setFav] = useState(false);
 
   const { id } = useParams(); //Id character
 
@@ -34,7 +38,12 @@ const Character = () => {
         );
         setData(response.data);
 
-        //  setIsLoading(false);
+        const responseComics = await axios.get(`${serverUrl}/comics/${id}`);
+        // console.log(responseComics.data.comics); //.comics[0].title
+        setDataComics(responseComics.data.comics);
+        setIsLoading(false);
+
+        setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -42,45 +51,46 @@ const Character = () => {
     fetchDataCharacter();
   }, [id]);
 
-  useEffect(() => {
-    const fetchDataComics = async () => {
-      try {
-        const responseComics = await axios.get(`${serverUrl}/comics/${id}`);
-        // console.log(responseComics.data.comics); //.comics[0].title
-        setDataComics(responseComics.data.comics);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchDataComics();
-  }, [id]);
   //----Test toogle fav----//
   const favHandleClick = (event) => {
-    //event.preventDefault();
-    if (fav === true) {
-      console.log(fav);
-      setFav(false);
+    let listFavorisCharacters = Cookies.get("favorisCharacters");
+
+    //--Console.log----//
+    console.log(`Liste id in cookie : ${listFavorisCharacters}`);
+    console.log(`Id value : ${id}`);
+    console.log(
+      `indeOf(id) value : ${Cookies.get("favorisCharacters").indexOf(id)}`
+    );
+
+    if (Cookies.get("favorisCharacters").indexOf(id) !== -1) {
+      listFavorisCharacters.replace(id + ",", "");
+      Cookies.set("favorisCharacters", listFavorisCharacters);
+      console.log("remove id in cookie");
+      console.log(Cookies.get("favorisCharacters"));
+      // setFav(false);
     } else {
-      if (Cookies.get("favorisCharacters") === undefined) {
+      //----Console.log----//
+      console.log(`Liste id in cookie : ${Cookies.get("favorisCharacters")}`);
+
+      if (
+        Cookies.get("favorisCharacters") === undefined ||
+        Cookies.get("favorisCharacters") === ""
+      ) {
         Cookies.set("favorisCharacters", id);
+
         console.log("set cookie");
       } else {
-        let listFavorisCharacters = Cookies.get("favorisCharacters");
-        listFavorisCharacters = listFavorisCharacters + "," + id;
-        Cookies.set("favorisCharacters", listFavorisCharacters);
-        console.log("list cookies:");
-        console.log(listFavorisCharacters);
+        if (listFavorisCharacters.indexOf(id) === -1) {
+          listFavorisCharacters = id + "," + listFavorisCharacters;
+          Cookies.set("favorisCharacters", listFavorisCharacters);
+        }
+
+        // console.log("list cookies:");
+        // console.log(listFavorisCharacters);
       }
-      setFav(true);
+      //  setFav(true);
     }
   };
-
-  // useEffect(() => {
-
-  //   };
-  //   favHandleClick();
-  // }, []);
 
   return isLoading ? (
     <p>Veuillez patienter ...pour ce personnage</p>
@@ -91,7 +101,11 @@ const Character = () => {
         <div className="col-1">
           <img
             className="fav-on"
-            src={fav === true ? heartOn : heartOff}
+            src={
+              Cookies.get("favorisCharacters").indexOf(id) === -1
+                ? heartOff
+                : heartOn
+            }
             alt="heart-off"
             onClick={() => {
               //fav === true ? setFav(false) : setFav(true);
