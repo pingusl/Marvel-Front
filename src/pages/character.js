@@ -19,7 +19,7 @@ const Character = () => {
   const [imgUrl, setImgUrl] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  //const [fav, setFav] = useState(false);
+  const [fav, setFav] = useState(false);
 
   const { id } = useParams(); //Id character
 
@@ -42,54 +42,61 @@ const Character = () => {
         // console.log(responseComics.data.comics); //.comics[0].title
         setDataComics(responseComics.data.comics);
         setIsLoading(false);
+        //----Check if this characters is a favoris----//
 
-        setIsLoading(false);
+        if (
+          Cookies.get("favorisCharacters").indexOf(id) === -1 ||
+          Cookies.get("favorisCharacters").indexOf(id) === undefined
+        ) {
+          setFav(false);
+        } else {
+          setFav(true);
+        }
+
+        console.log(`status favoris = ${fav}`);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchDataCharacter();
-  }, [id]);
+  }, [id, fav]);
 
   //----Test toogle fav----//
+
   const favHandleClick = (event) => {
-    let listFavorisCharacters = Cookies.get("favorisCharacters");
+    event.preventDefault();
+    const listFavorisCharacters = Cookies.get("favorisCharacters");
+    let newList = "";
 
-    //--Console.log----//
-    console.log(`Liste id in cookie : ${listFavorisCharacters}`);
-    console.log(`Id value : ${id}`);
-    console.log(
-      `indeOf(id) value : ${Cookies.get("favorisCharacters").indexOf(id)}`
-    );
+    if (Cookies.get("favorisCharacters")) {
+      //--Console.log----//
+      // console.log("Avant action sur coeur");
+      // console.log(`Liste id in cookie : ${listFavorisCharacters}`);
+      // console.log(`Id value : ${id}`);
+      // console.log(
+      //   `indexOf(id) value : ${Cookies.get("favorisCharacters").indexOf(id)}`
+      // );
 
-    if (Cookies.get("favorisCharacters").indexOf(id) !== -1) {
-      listFavorisCharacters.replace(id + ",", "");
-      Cookies.set("favorisCharacters", listFavorisCharacters);
-      console.log("remove id in cookie");
-      console.log(Cookies.get("favorisCharacters"));
-      // setFav(false);
-    } else {
-      //----Console.log----//
-      console.log(`Liste id in cookie : ${Cookies.get("favorisCharacters")}`);
-
-      if (
-        Cookies.get("favorisCharacters") === undefined ||
-        Cookies.get("favorisCharacters") === ""
-      ) {
-        Cookies.set("favorisCharacters", id);
-
-        console.log("set cookie");
+      if (Cookies.get("favorisCharacters").indexOf(id) !== -1) {
+        // //L'utilisateur a cliqué alors que l'id existe dans le cookie//
+        // //Il faut donc retirer l'id du cookie//
+        setFav(false);
+        newList = listFavorisCharacters.replace(id + ",", "");
+        // //Puis mettre a jour le cookie qui ne doit plus mémoriser l'id//
+        Cookies.set("favorisCharacters", newList);
       } else {
-        if (listFavorisCharacters.indexOf(id) === -1) {
-          listFavorisCharacters = id + "," + listFavorisCharacters;
-          Cookies.set("favorisCharacters", listFavorisCharacters);
-        }
+        setFav(true);
 
-        // console.log("list cookies:");
-        // console.log(listFavorisCharacters);
+        if (listFavorisCharacters.indexOf(id) === -1) {
+          newList = id + "," + listFavorisCharacters;
+          Cookies.set("favorisCharacters", newList);
+        }
       }
-      //  setFav(true);
+    } else {
+      Cookies.set("favorisCharacters", id + ",");
+      setFav(true);
     }
+    console.log(`Valeur fav= ${fav}`);
   };
 
   return isLoading ? (
@@ -101,16 +108,15 @@ const Character = () => {
         <div className="col-1">
           <img
             className="fav-on"
-            src={
-              Cookies.get("favorisCharacters").indexOf(id) === -1
-                ? heartOff
-                : heartOn
-            }
+            src={fav ? heartOn : heartOff}
             alt="heart-off"
-            onClick={() => {
-              //fav === true ? setFav(false) : setFav(true);
-              favHandleClick();
-            }}
+            onClick={
+              (event) => {
+                favHandleClick(event);
+              }
+
+              //setFav(true);
+            }
           />
           <img className="img-character" src={imgUrl} alt={data.name} />
         </div>
