@@ -1,52 +1,72 @@
 .character-container {
   .character-filmography {
     display: flex;
+
     .col-1 {
       display: flex;
-      flex: 1;
+      flex: 1.5;
       flex-direction: column;
 
       .img-character {
         //     position: fixed;
         padding-left: 2rem;
-        width: 20rem;
+        width: 30rem;
+        height: 30rem;
+        object-fit: cover;
+        border-bottom-left-radius: 15%;
+        border-top-right-radius: 15%;
       }
       h1 {
+        padding-left: 2rem;
         font-size: xx-large;
         font-weight: 700;
+        width: 30rem;
+        background-color: #ed171e;
+        color: white;
+        border-top-left-radius: 15%;
+        border-bottom-right-radius: 50%;
       }
       .fav-on {
         height: 40px;
         width: 40px;
         position: relative;
         top: 50px;
-        left: 300px;
+        left: 400px;
       }
       .fav-off {
         height: 40px;
         width: 40px;
         position: relative;
         top: 50px;
-        left: 300px;
+        left: 400px;
       }
     }
     .col-2 {
       display: flex;
-      flex: 1;
+      flex: 0;
       flex-direction: column;
     }
     .col-3 {
       display: flex;
-      flex: 1;
-      flex-direction: column;
-      h4 {
-        font-size: large;
-        font-weight: 700;
-      }
+      flex: 1.5;
+      flex-wrap: wrap;
+      //flex-direction: column;
+      // background-color: red;
+
       .comics-card {
         padding-top: 2rem;
+        h4 {
+          font-size: medium;
+          flex-wrap: wrap;
+          font-weight: 400;
+          width: 5rem;
+          height: 2rem;
+          margin-bottom: 1rem;
+        }
         .comic-card-img {
-          width: 20rem;
+          width: 5rem;
+          margin: 4px;
+          border-bottom-right-radius: 20%;
         }
       }
     }
