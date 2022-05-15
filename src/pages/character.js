@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
 //----Loading CSS----//
 import "../components/character.scss";
@@ -20,7 +21,8 @@ const Character = () => {
 
   //const serverUrl = "http://localhost:3000";
   const serverUrl = "https://marvel-sl.herokuapp.com";
-  console.log(id);
+  //console.log(id);
+
   useEffect(() => {
     const fetchDataCharacter = async () => {
       try {
@@ -60,6 +62,16 @@ const Character = () => {
       console.log(fav);
       setFav(false);
     } else {
+      if (Cookies.get("favorisCharacters") === undefined) {
+        Cookies.set("favorisCharacters", id);
+        console.log("set cookie");
+      } else {
+        let listFavorisCharacters = Cookies.get("favorisCharacters");
+        listFavorisCharacters = listFavorisCharacters + "," + id;
+        Cookies.set("favorisCharacters", listFavorisCharacters);
+        console.log("list cookies:");
+        console.log(listFavorisCharacters);
+      }
       setFav(true);
     }
   };
