@@ -34,7 +34,7 @@ const Character = () => {
         setData(response.data);
 
         const responseComics = await axios.get(`${serverUrl}/comics/${id}`);
-
+        // console.log(responseComics.data.comics);
         setDataComics(responseComics.data.comics);
         setIsLoading(false);
 
@@ -83,7 +83,6 @@ const Character = () => {
     <p>Veuillez patienter ...pour ce personnage</p>
   ) : (
     <div className="character-container">
-      <h1>{data.name}</h1>
       <div className="character-filmography">
         <div className="col-1">
           <img
@@ -95,17 +94,27 @@ const Character = () => {
             }}
           />
           <img className="img-character" src={imgUrl} alt={data.name} />
+          <h1>{data.name}</h1>
         </div>
-        <div className="col-2">
+        <div className="col-2"></div>
+        <div className="col-3">
+          {" "}
           {dataComics.map((comics, key) => {
             return (
-              <p className="card" key={key}>
-                {comics.title}
-              </p>
+              <div className="comics-card" key={key}>
+                <h4 className="card" key={comics.title}>
+                  {comics.title}
+                </h4>
+                <img
+                  className="comic-card-img"
+                  src={comics.thumbnail.path + "." + comics.thumbnail.extension}
+                  alt={comics.title}
+                  key={comics._id}
+                ></img>
+              </div>
             );
           })}
         </div>
-        <div className="col-3"></div>
       </div>
     </div>
   );

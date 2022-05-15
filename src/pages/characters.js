@@ -20,10 +20,10 @@ const Characters = ({
   setSearchInput,
 }) => {
   const [data, setData] = useState();
-  // const [searchInput, setSearchInput] = useState("");
+
   const [isLoading, setIsLoading] = useState(true);
   const [total, setTotal] = useState(0);
-  // const [skipCharacters, setSkipCharacters] = useState(0);
+
   const limit = 30;
   //const serverUrl = "http://localhost:3000";
   const serverUrl = "https://marvel-sl.herokuapp.com";

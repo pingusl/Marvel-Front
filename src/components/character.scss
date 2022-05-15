@@ -1,37 +1,54 @@
 .character-container {
   .character-filmography {
     display: flex;
-  }
-  .col-1 {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+    .col-1 {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
 
-    .img-character {
-      padding-left: 2rem;
-      width: 20rem;
+      .img-character {
+        //     position: fixed;
+        padding-left: 2rem;
+        width: 20rem;
+      }
+      h1 {
+        font-size: xx-large;
+        font-weight: 700;
+      }
+      .fav-on {
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 50px;
+        left: 300px;
+      }
+      .fav-off {
+        height: 40px;
+        width: 40px;
+        position: relative;
+        top: 50px;
+        left: 300px;
+      }
     }
-    .fav-on {
-      height: 40px;
-      width: 40px;
-      position: relative;
-      top: 50px;
-      left: 300px;
+    .col-2 {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
     }
-    .fav-off {
-      height: 40px;
-      width: 40px;
-      position: relative;
-      top: 50px;
-      left: 300px;
+    .col-3 {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      h4 {
+        font-size: large;
+        font-weight: 700;
+      }
+      .comics-card {
+        padding-top: 2rem;
+        .comic-card-img {
+          width: 20rem;
+        }
+      }
     }
-  }
-  .col-2 {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-  }
-  .col-3 {
-    flex: 1;
   }
 }
