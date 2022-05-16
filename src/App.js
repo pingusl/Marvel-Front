@@ -1,9 +1,9 @@
 //----Loading Tools----//
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
+//import { useState } from "react";
 
 import logo from "./img/logo.png";
-import ironMan from "./img/iron-man.png";
+//import ironMan from "./img/iron-man.png";
 
 //----Load Pages----//
 import Characters from "./pages/characters";
@@ -15,7 +15,7 @@ import "./App.scss";
 
 function App() {
   //----States---//
-  const [skipCharacters, setSkipCharacters] = useState(0);
+  // const [skipCharacters, setSkipCharacters] = useState(0);
   //const [searchInput, setSearchInput] = useState("");
   // const [totalCharacters, setTotalCharacters] = useState(0);
 
@@ -23,7 +23,6 @@ function App() {
     <Router>
       <div className="App">
         <header className="header">
-          <img className="iron-man" src={ironMan} alt="iron-man" />
           <Link className="header-characters" to="/characters">
             <h1 className="header-characters">Characters</h1>
           </Link>
@@ -40,12 +39,12 @@ function App() {
                 path="/characters"
                 element={
                   <Characters
-                    skipCharacters={skipCharacters}
-                    setSkipCharacters={setSkipCharacters}
-                    //searchInput={searchInput}
-                    //setSearchInput={setSearchInput}
-                    //    totalCharacters={totalCharacters}
-                    //     setTotalCharacters={setTotalCharacters}
+                  //skipCharacters={skipCharacters}
+                  // setSkipCharacters={setSkipCharacters}
+                  //searchInput={searchInput}
+                  //setSearchInput={setSearchInput}
+                  //    totalCharacters={totalCharacters}
+                  //     setTotalCharacters={setTotalCharacters}
                   />
                 }
               />
