@@ -13,10 +13,10 @@ import nextArrow from "../img/Antu_arrow-right.png";
 import favorisOn from "../img/bouclier.png";
 import Cookies from "js-cookie";
 
-const Characters = () => {
+const Characters = ({ skipCharacters, setSkipCharacters }) => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
-  const [skipCharacters, setSkipCharacters] = useState(0);
+  // const [skipCharacters, setSkipCharacters] = useState(0);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -54,6 +54,7 @@ const Characters = () => {
             onClick={() => {
               let memPrevious = skipCharacters - limit;
               setSkipCharacters(memPrevious);
+              // Cookies.set("skipCharacters", memPrevious);
             }}
             key="previous-img"
           >
@@ -90,6 +91,7 @@ const Characters = () => {
             onClick={() => {
               let memNext = skipCharacters + limit;
               setSkipCharacters(memNext);
+              //  Cookies.set("skipCharacters", memNext);
             }}
             key="next-img"
           >
@@ -112,11 +114,12 @@ const Characters = () => {
                   to={"/character/" + character._id}
                   key={character._id}
                 >
-                  <div className="character-card">
+                  <div className="character-card" key={key}>
                     <img
                       className="img-character"
                       src={imgUrl}
                       alt="{character.name}"
+                      key={character._id + character.name}
                     />
                     <img
                       className={
@@ -128,11 +131,15 @@ const Characters = () => {
                       }
                       src={favorisOn}
                       alt="favIn"
+                      key={key + character._id}
                     />
                     <div className="name-card" key={character.name}>
                       {character.name}
                     </div>
-                    <div className="name-description" key={key}>
+                    <div
+                      className="name-description"
+                      key={character.description}
+                    >
                       {character.description}
                     </div>
                   </div>

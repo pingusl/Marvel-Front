@@ -122,9 +122,11 @@ const Comics = () => {
       <div className="search-and-autocomplet">
         <div className="col-1"></div>
         <ul className="autocomplet-container">
-          {tab.map((autocomplet) => {
+          {tab.map((autocomplet, key) => {
             return (
-              <li className="item-autocomplet">{autocomplet.props.children}</li>
+              <li className="item-autocomplet" key={key}>
+                {autocomplet.props.children}
+              </li>
             );
           })}
         </ul>
@@ -136,8 +138,8 @@ const Comics = () => {
           if (imgUrl.indexOf("image_not_available") === -1) {
             if (imgUrl.indexOf("4c002e0305708") === -1) {
               const card = (
-                <div className="comic-card">
-                  <div>
+                <div className="comic-card" key={key}>
+                  <div key={imgUrl}>
                     <img
                       className="card-picture"
                       src={imgUrl}
@@ -145,11 +147,19 @@ const Comics = () => {
                       key={comic.title}
                     />
                   </div>
-                  <div className="comic-informations">
-                    <div className="card-title">
-                      <h4>{comic.title}</h4>
+                  <div
+                    className="comic-informations"
+                    key={`comic-information: ${key}`}
+                  >
+                    <div className="card-title" key={`card-title: ${key}`}>
+                      <h4 key={`comic-title: ${key}`}>{comic.title}</h4>
                     </div>
-                    <div className="comic-description">{comic.description}</div>
+                    <div
+                      className="comic-description"
+                      key={`comic-description: ${key}`}
+                    >
+                      {comic.description}
+                    </div>
                   </div>
                 </div>
               );
