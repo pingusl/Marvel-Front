@@ -1,9 +1,7 @@
 //----Loading Tools----//
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-//import { useState } from "react";
 
 import logo from "./img/logo.png";
-//import ironMan from "./img/iron-man.png";
 
 //----Load Pages----//
 import Characters from "./pages/characters";
@@ -14,11 +12,6 @@ import "./components/reset.css";
 import "./App.scss";
 
 function App() {
-  //----States---//
-  // const [skipCharacters, setSkipCharacters] = useState(0);
-  //const [searchInput, setSearchInput] = useState("");
-  // const [totalCharacters, setTotalCharacters] = useState(0);
-
   return (
     <Router>
       <div className="App">
@@ -35,19 +28,7 @@ function App() {
           <div className="main">
             <Routes>
               <Route path="/" element={<Characters />} />
-              <Route
-                path="/characters"
-                element={
-                  <Characters
-                  //skipCharacters={skipCharacters}
-                  // setSkipCharacters={setSkipCharacters}
-                  //searchInput={searchInput}
-                  //setSearchInput={setSearchInput}
-                  //    totalCharacters={totalCharacters}
-                  //     setTotalCharacters={setTotalCharacters}
-                  />
-                }
-              />
+              <Route path="/characters" element={<Characters />} />
               <Route path="/character/:id" element={<Character />} />
               <Route path="/comics" element={<Comics />} />
               <Route path="/comic/:id" element={<Comic />} />
