@@ -13,10 +13,10 @@ import nextArrow from "../img/Antu_arrow-right.png";
 import favorisOn from "../img/bouclier.png";
 import Cookies from "js-cookie";
 
-const Characters = () => {
+const Characters = ({ skipCharacters, setSkipCharacters }) => {
   const [data, setData] = useState();
   const [searchInput, setSearchInput] = useState("");
-  const [skipCharacters, setSkipCharacters] = useState(0);
+  //const [skipCharacters, setSkipCharacters] = useState(0);
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
